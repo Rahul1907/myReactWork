@@ -1,0 +1,21 @@
+.packing{
+  height: 300px;
+  width: 400px;
+  margin: 10px;
+}
+
+.giftDisplay{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 50px;
+}
+.gift-style{
+  height: 400px;
+  width:30%;
+}
+
+.addButton{
+  position: absolute;
+  margin: 250px 45px;
+  width:200px
+}
