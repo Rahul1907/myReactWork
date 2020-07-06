@@ -4,6 +4,7 @@ import Stepper from 'react-js-stepper'
 import Blackpack from '../images/BlackPack.jpg'
 import WhitePack from '../images/WhitePack.jpg'
 import GiftList from './GiftsList'
+import Cart from './Cart'
 import {connect} from 'react-redux'
 import {addPacking} from './Actions/index'
 
@@ -54,7 +55,7 @@ render(){
             <div style={{marginTop: '40px'}}>
               {this.state.activeStep===1 && <Boxcompo Blackpack={Blackpack} WhitePack={WhitePack} handleNext={this.handleOnClickNext}/>}    
               {this.state.activeStep===2 && <GiftList />}
-              {this.state.activeStep===2 && this.props.gifts.items && <div> <h1>{this.props.gifts.id}</h1></div>}
+              {this.state.activeStep===2 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0 && <Cart handleNext={this.handleOnClickNext} />}
               {this.state.activeStep===3 }
               {this.state.activeStep===4}
             </div>

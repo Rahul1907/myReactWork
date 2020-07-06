@@ -17,5 +17,20 @@
 .addButton{
   position: absolute;
   margin: 250px 45px;
-  width:200px
+  width:200px;
+}
+
+.submit-button{
+  padding-bottom: 10px;
+  margin: 10px;
+  float: right;
+  background-color: darkgreen;
+}
+
+.cart-images{
+  float: left;
+  margin: 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
 }
