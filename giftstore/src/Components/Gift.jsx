@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {ToastsContainer,ToastsStore, ToastsContainerPosition} from 'react-toasts'
 import {addGift,addOne,removeGift} from './Actions/index'
-
 class Gift extends Component {
   constructor(){
     super()
@@ -22,6 +22,8 @@ class Gift extends Component {
     }
     this.props.addGift(obj)
     this.setState({addButton:false,descInc:true,firstadd:'none'})
+    ToastsStore.success(`Added ${this.props.name}`)
+     
   }
   
   addMinus=(e)=>{
@@ -31,6 +33,12 @@ class Gift extends Component {
         this.props.addOne(this.props.id)
         break;
       case 'minus':
+        if(this.props.gifts.items[this.props.id]['qty']===1){
+          this.setState({
+            firstadd:'block',
+            descInc:false
+          })
+        }
         this.props.removeGift(this.props.id)
         break;
       default:
@@ -47,6 +55,7 @@ class Gift extends Component {
           <button value="add" className="addButton btn btn-success" style={{display:this.state.firstadd}}  onClick={this.addElemnet} >
             Add to bag
           </button>
+          
         }        
         
         {
@@ -56,9 +65,10 @@ class Gift extends Component {
             <button value="add" className="btn btn-primary" onClick={this.addMinus} >
               <i className="fa fa-plus" aria-hidden="true"></i>
             </button>
-            <p className="bg-primary">
+            <button className="btn btn-primary" disabled>
               In Bag {items}
-            </p>
+            </button>
+            
             <button value="minus" className="btn btn-primary"onClick={this.addMinus} >
               <i className="fa fa-minus" aria-hidden="true"></i>
             </button> 
@@ -67,6 +77,7 @@ class Gift extends Component {
         <img src={this.props.image} alt={this.props.name} style={{width:'300px',height:'300px'}}/>
         <p>{this.props.name}</p>
         <p><i className="fa fa-inr" aria-hidden="true"></i> {this.props.price}</p>
+        <ToastsContainer position={ToastsContainerPosition.BOTTOM_CENTER} lightBackground store={ToastsStore}/>
       </div>
     )
   }
