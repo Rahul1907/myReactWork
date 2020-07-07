@@ -7,7 +7,7 @@
 .giftDisplay{
   display: flex;
   flex-wrap: wrap;
-  padding: 50px;
+  padding: 20px;
 }
 .gift-style{
   height: 400px;
@@ -52,4 +52,41 @@
   color: #069;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.inline-header li{
+  align-content: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.inline-header {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: palegoldenrod;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.footer-data{
+  display: flex;
+  justify-content: center;
+}
+.footer-data div{
+  padding: 20px;
+}
+
+.footer-inside p{
+  margin:2px
+}
+.footer-inside span{
+  padding:10px 0px
 }

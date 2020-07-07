@@ -6,7 +6,7 @@ class Cart extends Component {
     var value=0;
     var imageTag = Object.values(this.props.gifts.items).map(x=>{
       value+=x.price*x.qty;
-      return <img className="cart-images" alt="gifts" src={x.image}/>
+      return <img className="cart-images" key={x.id} alt="gifts" src={x.image}/>
     })
 
     return (

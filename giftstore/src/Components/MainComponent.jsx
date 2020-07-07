@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
-import Boxcompo from './BoxComp'
+import {connect} from 'react-redux'
 import Stepper from 'react-js-stepper'
-import Blackpack from '../images/BlackPack.jpg'
-import WhitePack from '../images/WhitePack.jpg'
+import Boxcompo from './BoxComp'
 import GiftList from './GiftsList'
 import Cart from './Cart'
 import Sticker from './Sticker'
-import {connect} from 'react-redux'
+import PurchaseDetails from './PurchaseDetails'
+import Blackpack from '../images/BlackPack.jpg'
+import WhitePack from '../images/WhitePack.jpg'
+import HeadImg from '../images/title.jpg'
+
+
 import {addPacking} from './Actions/index'
 
-const steps = [{title: 'Step-1'}, {title: 'Step-2'}, {title: 'Step-3'}, {title: 'Step-4'}]
+const steps = [{title: 'Select Packing'}, {title: 'Choose Your Gifts'}, {title: 'Personalise it'}, {title: 'Review'}]
 
 
 class MainComponent extends Component {
@@ -18,53 +22,58 @@ class MainComponent extends Component {
 
     this.state = {
       activeStep: 1,
-      giftProps:{}
     }
   }
 
   handleOnClickStepper = (step) => {
-    if(step<this.state.activeStep)
-      this.setState({activeStep: step});
+    var giveStep;
+    if(step<this.state.activeStep){
+      this.setState({activeStep:step})
+    }
+    else{
+      if((step===2 && this.props.gifts.packing) || (step===3 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0) || (step===4 && this.props.gifts.stickerInfo) ){
+        giveStep=step;
+        this.setState({activeStep:giveStep})
+      }
+    }
   }
 
   handleOnClickNext = (e) => {
     if(e.target.name==='Pack')
       this.props.addPacking(e.target.id)
-    
-    
     let nextStep = this.state.activeStep + 1;
     this.setState({activeStep: nextStep})
   }
 
-
-
-
-
   render(){
-      console.log(this.props.gifts);
-      
       return(
         <div className="container"> 
           <React.Fragment>
+              <div>
+                <img src={HeadImg} alt="Heading" style={{display:'block',marginLeft:'auto',marginRight:'auto',width:'20%'}} height="200px" width="200px"/>
+                <ul class="inline-header">
+                  <li><b>Shop Gifts <i class="fa fa-angle-down" aria-hidden="true"></i> </b></li>
+                  <li><b>Top 50 Gifts</b></li>
+                  <li><b>Timeless Roses</b></li>
+                  <li><b>Our Story</b></li>
+                  <li><b>Inspire Bracelets</b></li>
+
+                </ul>
+              </div>
+              <hr style={{height:'5px',backgroundColor:'lightgrey'}}/>
               <Stepper 
                 className="stepperStyle"
                 steps={steps} 
                 activeStep={this.state.activeStep}
                 onSelect={this.handleOnClickStepper}
-                // showNumber={true} 
+                showNumber={true} 
               />
               <div style={{marginTop: '40px'}}>
                 {this.state.activeStep===1 && <Boxcompo Blackpack={Blackpack} WhitePack={WhitePack} handleNext={this.handleOnClickNext}/>}    
                 {this.state.activeStep===2 && <GiftList />}
                 {this.state.activeStep===2 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0 && <Cart handleNext={this.handleOnClickNext} />}
                 {this.state.activeStep===3 && <Sticker handleNext={this.handleOnClickNext}/>}
-                {this.state.activeStep===4 }
-              </div>
-
-              <div style={{marginTop: '40px'}}>
-                <input type="button" value={this.state.activeStep === steps.length ? 'Finish' : 'Next'} 
-                  onClick={this.state.activeStep === steps.length ? null : this.handleOnClickNext}/>
-                  
+                {this.state.activeStep===4 && <PurchaseDetails data={this.props.gifts} />}
               </div>
           </React.Fragment>
 

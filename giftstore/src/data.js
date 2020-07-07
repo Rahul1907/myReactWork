@@ -7,7 +7,7 @@ import gift5 from './images/gift5.jpg'
 const giftOptions={
   1:{
     id:1,
-    name:'zzzz',
+    name:'Zomo Mug',
     price:899,
     image:gift1
   },
