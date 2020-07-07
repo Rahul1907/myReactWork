@@ -37,44 +37,41 @@ class MainComponent extends Component {
   }
 
 
-handleOnClickBack = () => {
-    let prevStep = this.state.activeStep - 1;
-    this.setState({activeStep:prevStep})
-}
 
 
 
-render(){
-  
-    return(
-      <div className="container"> 
-        <React.Fragment>
-            <Stepper 
-              className="stepperStyle"
-              steps={steps} 
-              activeStep={this.state.activeStep}
-              onSelect={this.handleOnClickStepper}
-              // showNumber={true} 
-            />
-            <div style={{marginTop: '40px'}}>
-              {this.state.activeStep===1 && <Boxcompo Blackpack={Blackpack} WhitePack={WhitePack} handleNext={this.handleOnClickNext}/>}    
-              {this.state.activeStep===2 && <GiftList />}
-              {this.state.activeStep===2 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0 && <Cart handleNext={this.handleOnClickNext} />}
-              {this.state.activeStep===3 && <Sticker handleNext={this.handleOnClickNext}/>}
-              {this.state.activeStep===4}
-            </div>
+  render(){
+      console.log(this.props.gifts);
+      
+      return(
+        <div className="container"> 
+          <React.Fragment>
+              <Stepper 
+                className="stepperStyle"
+                steps={steps} 
+                activeStep={this.state.activeStep}
+                onSelect={this.handleOnClickStepper}
+                // showNumber={true} 
+              />
+              <div style={{marginTop: '40px'}}>
+                {this.state.activeStep===1 && <Boxcompo Blackpack={Blackpack} WhitePack={WhitePack} handleNext={this.handleOnClickNext}/>}    
+                {this.state.activeStep===2 && <GiftList />}
+                {this.state.activeStep===2 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0 && <Cart handleNext={this.handleOnClickNext} />}
+                {this.state.activeStep===3 && <Sticker handleNext={this.handleOnClickNext}/>}
+                {this.state.activeStep===4 }
+              </div>
 
-            <div style={{marginTop: '40px'}}>
-              <input type="button" value={this.state.activeStep === steps.length ? 'Finish' : 'Next'} 
-                onClick={this.state.activeStep === steps.length ? null : this.handleOnClickNext}/>
-                
-            </div>
-        </React.Fragment>
+              <div style={{marginTop: '40px'}}>
+                <input type="button" value={this.state.activeStep === steps.length ? 'Finish' : 'Next'} 
+                  onClick={this.state.activeStep === steps.length ? null : this.handleOnClickNext}/>
+                  
+              </div>
+          </React.Fragment>
 
-      </div>
-    )
+        </div>
+      )
+    }
   }
-}
 
 const mapStateToProps=(state)=>{
   return {

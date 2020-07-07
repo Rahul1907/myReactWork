@@ -3,13 +3,14 @@ import {connect} from 'react-redux'
 import {ToastsContainer,ToastsStore, ToastsContainerPosition} from 'react-toasts'
 import {addGift,addOne,removeGift} from './Actions/index'
 class Gift extends Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state={
       addButton:false,
-      descInc:false,
-      firstadd:'block'
+      descInc:this.props.gifts.items && this.props.gifts.items[this.props.id]?true:false,
+      firstadd:this.props.gifts.items && this.props.gifts.items[this.props.id]?'none':'block'
     }
+    this.items=0;
   }
 
   addElemnet=()=>{

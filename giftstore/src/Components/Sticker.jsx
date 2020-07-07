@@ -10,11 +10,11 @@ class Sticker extends Component {
     super(props)
   
     this.state = {
-      msgBox:false,
-      selectedImage:null,
-      memovalue:'',
-      memoDiable:false,
-      stickerName:''
+      msgBox:this.props.gifts.stickerInfo?true:false,
+      selectedImage:this.props.gifts.stickerInfo && this.props.gifts.stickerInfo.image? this.props.gifts.stickerInfo.image:null,
+      memovalue:this.props.gifts.stickerInfo && this.props.gifts.stickerInfo.msg!=null?this.props.gifts.stickerInfo.msg:'',
+      memoDiable:this.props.gifts.stickerInfo && this.props.gifts.stickerInfo.msg==null?true:false,
+      stickerName:this.props.gifts.stickerInfo && this.props.gifts.stickerInfo.name? this.props.gifts.stickerInfo.name : '',
     }
   }
   
@@ -96,7 +96,7 @@ class Sticker extends Component {
                 <p>Message on Card</p>
                 {350-this.state.memovalue.length} Character(s) remaining
                 <textarea cols="70" rows="9" value={this.state.memovalue} placeholder="Max Length 350" onChange={this.memoUpdate} disabled={this.state.memoDiable} />
-                <input type="checkbox" name="OwnMsg" onClick={(e)=>{this.setState({memoDiable:e.target.checked})}}/> Want it Hand written
+                <input type="checkbox" name="OwnMsg" onClick={(e)=>{this.setState({memoDiable:e.target.checked})}} checked={this.state.memoDiable}/> Want it Hand written
               </div>
             </div>
             <div style={{textAlign:'center',marginTop:'10px'}}>

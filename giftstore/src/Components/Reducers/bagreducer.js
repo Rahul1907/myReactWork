@@ -57,7 +57,7 @@ const bagreducer=(state=initaildata,action)=>{
       else{
         stcState['stickerInfo']['name']=payload.name;
         stcState['stickerInfo']['image']=payload.image;
-        stcState['stickerInfo']['name']=payload.msg;
+        stcState['stickerInfo']['msg']=payload.msg;
       }
       
       return stcState;
