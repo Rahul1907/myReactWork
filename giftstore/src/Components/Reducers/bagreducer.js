@@ -45,6 +45,22 @@ const bagreducer=(state=initaildata,action)=>{
       }
       
       return Upstate;
+    case 'addSticker':
+      var stcState = {...state}
+      if(!stcState['stickerInfo']){
+        stcState['stickerInfo']={
+          name:payload.name,
+          image:payload.image,
+          msg:payload.msg
+        }
+      }
+      else{
+        stcState['stickerInfo']['name']=payload.name;
+        stcState['stickerInfo']['image']=payload.image;
+        stcState['stickerInfo']['name']=payload.msg;
+      }
+      
+      return stcState;
     default :
       return state;
 

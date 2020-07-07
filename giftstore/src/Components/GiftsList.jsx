@@ -60,7 +60,7 @@ class GiftsList extends Component {
     return (
       <div>
         <h2 align="center">Choose your Gifts</h2>
-        <p align="center">Choose a Packaging that Speaks to your Loved one's style</p>
+        <p align="center"><small> Choose a Packaging that Speaks to your Loved one's style</small> </p>
         <div>
           <b>Filter </b>
           <select onChange={this.sortMethod} placeholder="Select Filter">

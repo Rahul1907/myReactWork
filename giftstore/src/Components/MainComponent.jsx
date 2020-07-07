@@ -5,6 +5,7 @@ import Blackpack from '../images/BlackPack.jpg'
 import WhitePack from '../images/WhitePack.jpg'
 import GiftList from './GiftsList'
 import Cart from './Cart'
+import Sticker from './Sticker'
 import {connect} from 'react-redux'
 import {addPacking} from './Actions/index'
 
@@ -27,7 +28,9 @@ class MainComponent extends Component {
   }
 
   handleOnClickNext = (e) => {
-    this.props.addPacking(e.target.name)
+    if(e.target.name==='Pack')
+      this.props.addPacking(e.target.id)
+    
     
     let nextStep = this.state.activeStep + 1;
     this.setState({activeStep: nextStep})
@@ -42,6 +45,7 @@ handleOnClickBack = () => {
 
 
 render(){
+  
     return(
       <div className="container"> 
         <React.Fragment>
@@ -56,7 +60,7 @@ render(){
               {this.state.activeStep===1 && <Boxcompo Blackpack={Blackpack} WhitePack={WhitePack} handleNext={this.handleOnClickNext}/>}    
               {this.state.activeStep===2 && <GiftList />}
               {this.state.activeStep===2 && this.props.gifts.items && Object.values(this.props.gifts.items).length>0 && <Cart handleNext={this.handleOnClickNext} />}
-              {this.state.activeStep===3 }
+              {this.state.activeStep===3 && <Sticker handleNext={this.handleOnClickNext}/>}
               {this.state.activeStep===4}
             </div>
 

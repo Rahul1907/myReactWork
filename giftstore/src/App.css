@@ -34,3 +34,22 @@
   width: 60px;
   border-radius: 10px;
 }
+
+.sticker-options{
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.sticker-options input{
+  height: 200px;
+  width: 200px;
+}
+
+.change-btn{
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+}

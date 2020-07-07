@@ -15,3 +15,7 @@ export const addPacking=(packtype)=>{
 export const addOne=(id)=>{
   return ({type:'increase',payload:id});
 }
+
+export const addSticker=(obj)=>{
+  return ({type:'addSticker',payload:obj})
+}
